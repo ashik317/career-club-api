@@ -1,0 +1,226 @@
+[
+ {
+  "model": "portal.admin",
+  "pk": "6307c8c039ff1",
+  "fields": {
+   "name": "admin",
+   "email": "admin@gmail.com",
+   "password": "legacy_sha256$$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 1,
+  "fields": {
+   "name": "Graphics Designer",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 2,
+  "fields": {
+   "name": "Content Writer",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 3,
+  "fields": {
+   "name": "Frontend Developer",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 4,
+  "fields": {
+   "name": "Backend Developer",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 5,
+  "fields": {
+   "name": "Bank/Non Bank",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 6,
+  "fields": {
+   "name": "Garments/Textile",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.category",
+  "pk": 7,
+  "fields": {
+   "name": "Marketing/Sales",
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.package",
+  "pk": 1,
+  "fields": {
+   "name": "Basic",
+   "numberofpost": 2,
+   "price": 50,
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.package",
+  "pk": 2,
+  "fields": {
+   "name": "Advanced",
+   "numberofpost": 5,
+   "price": 100,
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.package",
+  "pk": 3,
+  "fields": {
+   "name": "premium",
+   "numberofpost": 10,
+   "price": 150,
+   "admin": "6307c8c039ff1"
+  }
+ },
+ {
+  "model": "portal.employer",
+  "pk": "632ccd2d496d0",
+  "fields": {
+   "name": "Siam khan",
+   "companyname": "SwipeWire",
+   "location": "Narayanganj",
+   "email": "minhajulsiam786@gmail.com",
+   "mobile": "01900110022",
+   "password": "legacy_sha256$$03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+   "position": "employer",
+   "otp": null,
+   "otp_attempts": 0,
+   "authentication": "Verified",
+   "status": "active",
+   "bantime": null
+  }
+ },
+ {
+  "model": "portal.jobpost",
+  "pk": "632ccdaa36950",
+  "fields": {
+   "title": "Web Designer",
+   "companyname": "SwipeWire",
+   "category": 3,
+   "location": "Narayanganj",
+   "type": "Work From Home",
+   "requirement": "Html, Css, JS, React",
+   "education": "Bsc in cse",
+   "experience": "1-3 years",
+   "salary": 50,
+   "deadline": "2022-12-28T17:00:00+06:00",
+   "employer": "632ccd2d496d0",
+   "editlimit": 0,
+   "status": "approved"
+  }
+ },
+ {
+  "model": "portal.jobpost",
+  "pk": "632cce217ef58",
+  "fields": {
+   "title": "Junior Executive",
+   "companyname": "SwipeWire",
+   "category": 7,
+   "location": "Dhaka",
+   "type": "Part Time",
+   "requirement": "communication and computer skill",
+   "education": "BBA",
+   "experience": "1 years",
+   "salary": 25,
+   "deadline": "2022-12-26T03:05:00+06:00",
+   "employer": "632ccd2d496d0",
+   "editlimit": 1,
+   "status": "approved"
+  }
+ },
+ {
+  "model": "portal.jobpost",
+  "pk": "638b7b1c5e291",
+  "fields": {
+   "title": "Manager",
+   "companyname": "SwipeWire",
+   "category": 5,
+   "location": "Dhaka",
+   "type": "Part Time",
+   "requirement": "Computer skills, MS word, Excel, communication skill, Team manage",
+   "education": "MBA from reputed university",
+   "experience": "3-5 years",
+   "salary": 70,
+   "deadline": "2022-12-25T12:40:00+06:00",
+   "employer": "632ccd2d496d0",
+   "editlimit": 0,
+   "status": "approved"
+  }
+ },
+ {
+  "model": "portal.buypackage",
+  "pk": 39,
+  "fields": {
+   "employer": "632ccd2d496d0",
+   "numberofpost": 9,
+   "amount": "250.00"
+  }
+ },
+ {
+  "model": "portal.payment",
+  "pk": 190,
+  "fields": {
+   "status": "VALID",
+   "transid": "SSLCZ_TEST_632ccd71d4a28",
+   "cardtype": "BKASH-BKash",
+   "employer": "632ccd2d496d0",
+   "package": 2,
+   "package_name": "Advanced",
+   "numberofpost": 5,
+   "transtime": "2022-09-23T03:05:01+06:00",
+   "amount": "100.00"
+  }
+ },
+ {
+  "model": "portal.payment",
+  "pk": 191,
+  "fields": {
+   "status": "VALID",
+   "transid": "SSLCZ_TEST_638b7aa7990f9",
+   "cardtype": "BKASH-BKash",
+   "employer": "632ccd2d496d0",
+   "package": 1,
+   "package_name": "Basic",
+   "numberofpost": 2,
+   "transtime": "2022-12-03T22:34:47+06:00",
+   "amount": "50.00"
+  }
+ },
+ {
+  "model": "portal.payment",
+  "pk": 192,
+  "fields": {
+   "status": "VALID",
+   "transid": "SSLCZ_TEST_638b7aba5278b",
+   "cardtype": "ABBANKIB-AB Bank",
+   "employer": "632ccd2d496d0",
+   "package": 2,
+   "package_name": "Advanced",
+   "numberofpost": 5,
+   "transtime": "2022-12-03T22:35:06+06:00",
+   "amount": "100.00"
+  }
+ }
+]
