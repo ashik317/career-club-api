@@ -1,0 +1,24 @@
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+
+# noinspection PyTypeChecker
+class NameTitleChoices(models.TextChoices):
+    MR = "MR", _("Mr.")
+    MRS = "MRS", _("Mrs.")
+    MS = "MS", _("Ms.")
+    DR = "DR", _("Dr.")
+    MISS = "MISS", _("Miss.")
+    MADAM = "MADAM", _("Madam.")
+    MAIDEN = "MAIDEN", _("Maiden.")
+    PROFESSOR = "PROFESSOR", _("Professor.")
+    DOCTOR = "DOCTOR", _("Doctor.")
+
+
+# noinspection PyTypeChecker
+class UserRoleChoices(models.TextChoices):
+    LANDLORD = "LANDLORD", _("Landlord")
+    ADMIN = "ADMIN", _("Admin")
+    MORTGAGE_ADVISER = "MORTGAGE_ADVISER", _("Mortgage Adviser")
+    LETTING_AGENT = "LETTING_AGENT", _("Letting Agent")
+    SUPER_ADMIN_STAFF = "SUPER_ADMIN_STAFF", _("Super Admin Staff")
