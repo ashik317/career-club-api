@@ -55,16 +55,16 @@ Copy `.env.example` to `.env`. Nothing is required for local development.
 | PHP | Django |
 |-----|--------|
 | `database.php`, `database/career_club.sql` | `careerclub/settings.py`, `portal/models.py`, `portal/fixtures/career_club.json` |
-| `user/*.php` | `portal/api/user.py` |
-| `employer/*.php` | `portal/api/employer.py` |
+| `user/*.php` | `api` |
+| `employer/*.php` | `api` |
 | `employer/payment_*.php` | `portal/payments.py` + payment endpoints in `api/employer.py` |
-| `admin/*.php` | `portal/api/admin.py` |
-| `*_login.php`, `*_signup.php`, `*_otpsend.php`, `*_otpverify.php` | `portal/api/accounts.py` (shared by user and employer) |
-| PHP sessions | Login tokens: `portal/api/auth.py` |
+| `admin/*.php` | `api` |
+| `*_login.php`, `*_signup.php`, `*_otpsend.php`, `*_otpverify.php` | `api` (shared by user and employer) |
+| PHP sessions | Login tokens: `api` |
 | HTML in the PHP files, `css/`, navbars | Removed - build the front-end separately |
 | `phpmailer/` | Django's built-in `send_mail` |
 
-Routes are in `portal/api/urls.py`; request/response shapes in `portal/api/serializers.py`.
+Routes are in `api`; request/response shapes in `api`.
 
 ## Endpoints rebuilt from the database schema
 

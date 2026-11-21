@@ -9,7 +9,7 @@ django.contrib.auth is not used.  After a successful request:
 from django.utils import timezone
 from rest_framework import authentication, exceptions, permissions
 
-from ..models import Admin, AuthToken, Employer, User
+from portal.models import Admin, AuthToken, Employer, User
 
 MODELS = {AuthToken.ADMIN: Admin, AuthToken.EMPLOYER: Employer, AuthToken.USER: User}
 

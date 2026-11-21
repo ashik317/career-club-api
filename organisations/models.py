@@ -48,7 +48,6 @@ class OrganisationUser(CreatedAtUpdatedAtBaseModel):
     role = models.CharField(
         max_length=64,
         choices=OrganisationRoleChoices.choices,
-        default=OrganisationRoleChoices.LANDLORD,
         blank=True,
         null=True,
         verbose_name=_("Role"),
