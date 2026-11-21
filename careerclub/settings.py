@@ -61,9 +61,9 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "common.apps.apps.CommonConfig",
+    "common.apps.CommonConfig",
     "authentication.apps.AuthenticationConfig",
-    "organizations.apps.OrganizationsConfig",
+    "organisations.apps.OrganisationsConfig",
     "portal.apps.PortalConfig",
 ]
 

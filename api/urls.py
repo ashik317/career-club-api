@@ -1,6 +1,6 @@
 from django.urls import path
 
-from ..models import AuthToken, Employer, User
+from portal.models import AuthToken, Employer, User
 from . import accounts, admin, employer, public, user
 from .auth import IsEmployer, IsJobSeeker
 from .serializers import (

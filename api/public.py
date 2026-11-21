@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from ..models import Category, Package
+from portal.models import Category, Package
 from .accounts import public
 from .serializers import CategorySerializer, ContactSerializer, PackageSerializer
 

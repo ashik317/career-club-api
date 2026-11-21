@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils import timezone
 from rest_framework import serializers
 
-from ..models import (
+from portal.models import (
     Admin, BuyPackage, Category, ContactUs, Employer, Interview, JobApply, JobPost,
     Package, Payment, User,
 )

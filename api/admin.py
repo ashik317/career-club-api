@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from ..models import (
+from portal.models import (
     Admin, AuthToken, BuyPackage, Category, ContactUs, Employer, JobApply, JobPost,
     Package, Payment, User,
 )
