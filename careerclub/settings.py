@@ -57,6 +57,13 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     "easy_thumbnails",
 ]
 
@@ -80,6 +87,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "careerclub.urls"
@@ -115,7 +123,12 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.MultiPartParser",
         "rest_framework.parsers.FormParser",
     ],
-    "DEFAULT_THROTTLE_RATES": {"auth": env("AUTH_THROTTLE_RATE", "20/min")},
+    "DEFAULT_THROTTLE_RATES": {
+        "auth": env("AUTH_THROTTLE_RATE", "20/min"),
+        "login": env("LOGIN_THROTTLE_RATE", "5/min"),
+        "email_send": env("EMAIL_THROTTLE_RATE", "3/min"),
+        "register": env("REGISTER_THROTTLE_RATE", "5/min"),
+    },
     "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
 }
 
@@ -132,10 +145,67 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
 }
+PASSWORD_RESET_TIMEOUT = env_int("PASSWORD_RESET_TIMEOUT", 300)  # seconds
+
+
+# URLs used in emails, redirects and the Google callback
+BACKEND_URL = env("BACKEND_URL", "http://localhost:8000")
+FRONTEND_URL = env("FRONTEND_URL", "http://localhost:3000")
+
+
+# dj-rest-auth
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access-token",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
+    "JWT_AUTH_HTTPONLY": False,
+    "TOKEN_MODEL": None,
+    "JWT_AUTH_RETURN_EXPIRATION": True,
+    "LOGIN_SERIALIZER": "api.serializers.auth.CustomLoginSerializer",
+}
+
+
+# allauth (email login + Google)
+SITE_ID = 1
+
+ACCOUNT_EMAIL_VERIFICATION = "none"  # we verify with our own 6-digit code
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+GOOGLE_CALLBACK_URL = f"{BACKEND_URL}/auth/social/google/"
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email", "openid"],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "APP": {
+            "client_id": env("GOOGLE_CLIENT_ID"),
+            "secret": env("GOOGLE_CLIENT_SECRET"),
+            "key": "",
+        },
+    }
+}
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
 
 # CORS_ALLOWED_ORIGINS=http://localhost:3000
-CORS_ALLOWED_ORIGINS = [o for o in env("CORS_ALLOWED_ORIGINS").split(",") if o]
+CORS_ALLOWED_ORIGINS = [
+    o for o in env("CORS_ALLOWED_ORIGINS", FRONTEND_URL).split(",") if o
+]
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = [
+    o for o in env("CSRF_TRUSTED_ORIGINS", FRONTEND_URL).split(",") if o
+]
+
+# Behind a reverse proxy (nginx etc.) that terminates HTTPS
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 
 # Database
